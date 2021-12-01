@@ -54,8 +54,8 @@ public class ContactList {
             int end_index = this.persons.indexOf(end);
             Person[] persons2 = new Person[end_index - start_index + 1];
 
-            for(int i = start_index; i < end_index + 1;i++){
-                persons2[i] = this.persons.get(start_index + i);
+            for(int i = start_index; i < end_index;i++){
+                persons2[i] = this.persons.get(start_index);
             }
 
             return persons2;
@@ -93,6 +93,7 @@ public class ContactList {
                     all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
                 }
             }
+
 
             String[] all_numbers = new String[all_numbers2.size()];
             all_numbers = all_numbers2.toArray(all_numbers);
