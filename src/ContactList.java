@@ -1,4 +1,4 @@
-import java.util.*;   
+import java.util.*;
 
 public class ContactList {
 
@@ -7,7 +7,6 @@ public class ContactList {
     private BSTree name_tree;
     private ArrayList<String> name_list;
     private ArrayList<String> numbers_list;
-    private HashTable name_table;
     private Sorts sorter;
 
 
@@ -26,8 +25,8 @@ public class ContactList {
                 this.name_tree.insertData(person.getName(), temp_numbers.get(i));
             }
 
-            Sorts.InsertionSort(this.numbers_list, 0, this.numbers_list.size());
-            Sorts.InsertionSort(this.name_list, 0, this.name_list.size());
+            sorter.InsertionSort(this.numbers_list, 0, this.numbers_list.size());
+            sorter.InsertionSort(this.name_list, 0, this.name_list.size());
             this.size++;
             return true;
         }
