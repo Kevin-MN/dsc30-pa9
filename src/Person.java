@@ -30,11 +30,12 @@ public class Person implements Comparable<Person> {
     }
 
     public boolean deletePhoneNumber(String pn) {
-        if(this.phone_numbers.size() == 1){
+        if(this.phone_numbers.size() <= 1){
             throw new IllegalArgumentException();
         }
         else if(this.phone_numbers.contains(pn)){
-            return this.phone_numbers.remove(pn);
+            this.phone_numbers.remove(pn);
+            return true;
         }
         else{
             return false;
