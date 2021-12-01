@@ -5,9 +5,9 @@ public class ContactList {
 
         // Add instance variables here
         private int size;
-        private BSTree<String> name_tree = new BSTree<String>();
-        private ArrayList<String> name_list = new ArrayList<String>();
-        private ArrayList<String> numbers_list = new ArrayList<String>();
+        private BSTree<String> name_tree;
+        private ArrayList<String> name_list;
+        private ArrayList<String> numbers_list;
 
 
 
