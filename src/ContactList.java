@@ -10,6 +10,14 @@ public class ContactList {
         private ArrayList<String> numbers_list = new ArrayList<String>();
 
 
+
+
+
+
+
+
+
+
         public boolean createContact(Person person) {
 
             if (this.name_tree.findKey(person.getName())) {
@@ -25,8 +33,8 @@ public class ContactList {
                     this.name_tree.insertData(person.getName(), temp_numbers.get(i));
                 }
 
-                Sorts.InsertionSort(this.numbers_list, 0, this.numbers_list.size());
-                Sorts.InsertionSort(this.name_list, 0, this.name_list.size());
+                InsertionSort(this.numbers_list, 0, this.numbers_list.size());
+                InsertionSort(this.name_list, 0, this.name_list.size());
                 this.size++;
                 return true;
             }
@@ -107,5 +115,29 @@ public class ContactList {
             }
             return numbers;
         }
+
+
+        public void InsertionSort(ArrayList<String> list, int start, int end) {
+            int n = end;
+            for (int i = 1; i <= n; ++i) { // outer loop traverses n times
+                String key =  list.get(i); // get elem at i
+                int j = i - 1;
+
+                //keep on shifting down sorted section till key is not less that previous
+                while (j >= 0 && list.get(j).compareTo(key)  > 0) {
+                    list.set(j + 1, list.get(j));
+                    j = j - 1;
+                }
+
+                list.set(j+1, key);//we found proper index for key, so set
+            }
+        }
+
+
+
     }
+
+
+
+
 
