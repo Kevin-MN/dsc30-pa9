@@ -34,8 +34,7 @@ public class Person implements Comparable<Person> {
             return false;
         }
         else{
-            this.phone_numbers.remove(pn);
-            return true;
+            return this.phone_numbers.remove(pn);
         }
     }
 
