@@ -19,10 +19,6 @@ public class ContactList {
         }
 
 
-
-
-
-
         public boolean createContact(Person person) {
 
             if (this.name_tree.findKey(person.getName())) {
@@ -38,8 +34,8 @@ public class ContactList {
                     this.name_tree.insertData(person.getName(), temp_numbers.get(i));
                 }
 
-                InsertionSort(this.numbers_list, 0, this.numbers_list.size());
-                InsertionSort(this.name_list, 0, this.name_list.size());
+                InsertionSort(this.numbers_list, 0, this.numbers_list.size() - 1);
+                InsertionSort(this.name_list, 0, this.name_list.size() - 1);
                 this.size++;
                 return true;
             }
