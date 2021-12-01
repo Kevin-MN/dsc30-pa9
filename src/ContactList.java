@@ -11,7 +11,12 @@ public class ContactList {
 
 
 
-
+        public ContactList(){
+            int size = 0;
+            name_tree = new BSTree<String>();
+            name_list = new ArrayList<String>();
+            numbers_list = new ArrayList<String>();
+        }
 
 
 
