@@ -31,10 +31,13 @@ public class Person implements Comparable<Person> {
 
     public boolean deletePhoneNumber(String pn) {
         if(this.phone_numbers.size() == 1){
-            return false;
+            throw new IllegalArgumentException();
+        }
+        else if(this.phone_numbers.contains(pn)){
+            return this.phone_numbers.remove(pn);
         }
         else{
-            return this.phone_numbers.remove(pn);
+            return false;
         }
     }
 
