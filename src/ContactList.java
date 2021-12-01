@@ -52,7 +52,7 @@ public class ContactList {
 
             int start_index = this.persons.indexOf(start);
             int end_index = this.persons.indexOf(end);
-            Person[] persons2 = new Person[end_index - start_index + 1];
+            Person[] persons2 = new Person[end_index - start_index];
 
             for(int i = start_index; i < end_index;i++){
                 persons2[i] = this.persons.get(start_index);
