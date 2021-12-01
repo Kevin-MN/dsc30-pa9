@@ -5,14 +5,13 @@ public class ContactList {
 
         // Add instance variables here
         private int size;
-        private BSTree name_tree;
+        private BSTree<String> name_tree;
         private ArrayList<String> name_list;
         private ArrayList<String> numbers_list;
-        private Sorts sorter;
 
 
         public boolean createContact(Person person) {
-            sorter = new Sorts();
+
             if (this.name_tree.findKey(person.getName())) {
                 return false;
             } else {
@@ -26,8 +25,8 @@ public class ContactList {
                     this.name_tree.insertData(person.getName(), temp_numbers.get(i));
                 }
 
-                sorter.InsertionSort(this.numbers_list, 0, this.numbers_list.size());
-                sorter.InsertionSort(this.name_list, 0, this.name_list.size());
+                Sorts.InsertionSort(this.numbers_list, 0, this.numbers_list.size());
+                Sorts.InsertionSort(this.name_list, 0, this.name_list.size());
                 this.size++;
                 return true;
             }
