@@ -17,10 +17,11 @@ public class Person implements Comparable<Person> {
 
     public boolean addPhoneNumber(String pn) {
         if(this.phone_numbers.contains(pn)){
-            return true;
+            return false;
         }
         else{
-            return false;
+            this.phone_numbers.add(pn);
+            return true;
         }
     }
 
