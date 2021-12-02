@@ -33,15 +33,9 @@ public class ContactList {
 
         public boolean lookupContact(String name) {
 
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    return true;
-                }
-            }
 
-            return false;
 
-            /*
+
 
 
             ArrayList<String> temps = new ArrayList<String>();
@@ -52,10 +46,15 @@ public class ContactList {
                 return false;
             }
 
-             */
+
         }
 
         public Person getContact(String name) {
+
+
+
+
+
             for(int i = 0; i < this.persons.size();i++){
                 if(this.persons.get(i).getName().compareTo(name) == 0){
                     return this.persons.get(i);
@@ -63,16 +62,6 @@ public class ContactList {
             }
             return null;
 
-
-
-            /*
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    return this.persons.get(i);
-                }
-            }
-            return null;
-             */
 
 
         }
@@ -80,24 +69,7 @@ public class ContactList {
 
         public Person[] getContactByRange(String start, String end) {
 
-            if(start.compareTo(end) >= 0 ){
-                throw new IllegalArgumentException();
-            }
 
-
-            InsertionSort(this.persons, 0, this.persons.size() - 1);
-            int start_index = this.persons.indexOf(start);
-            int end_index = this.persons.indexOf(end);
-
-            Person[] persons2 = new Person[end_index - start_index];
-
-            for(int i = start_index; i < end_index;i++){
-                persons2[i] = this.persons.get(start_index + i);
-            }
-
-            return persons2;
-
-             /*
             if(start.compareTo(end) >= 0 ){
                 throw new IllegalArgumentException();
             }
@@ -114,23 +86,15 @@ public class ContactList {
             Person[] temp2 = new Person[temp.size()];
             temp2 = temp.toArray(temp2);
             return temp2;
-            */
+
 
         }
 
         public boolean deleteContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    this.persons.remove(i);
-                    this.size--;
-                    return true;
-                }
-            }
-            return false;
 
 
 
-            /*
+
             Person temp = new Person(name, new ArrayList<String>());
             if(this.person_tree.findKey(temp)){
                 this.person_tree.deleteKey(temp);
@@ -143,7 +107,7 @@ public class ContactList {
             else{
                 return false;
             }
-            */
+
 
         }
 
@@ -154,58 +118,18 @@ public class ContactList {
         public String[] fetchAllNames() {
 
 
-
-            String[] all_names = new String[this.persons.size()];
-            ArrayList<String> all_names2 = new ArrayList<String>();
-
-            for(int i = 0; i < all_names.length;i++) {
-                all_names2.add(this.persons.get(i).getName());
-            }
-
-            InsertionSort2(all_names2, 0, all_names2.size() - 1);
-            all_names = all_names2.toArray(all_names);
-            return all_names;
-
-            /*
             InsertionSort2(this.names, 0, this.names.size() - 1);
             String[] all_names = new String[this.names.size()];
             all_names = this.names.toArray(all_names);
 
             return all_names;
-
-             */
         }
 
 
         public String[] fetchAllPhoneNumbers() {
 
 
-            ArrayList<String> all_numbers2 = new ArrayList<String>();
-            for(int i = 0; i < this.persons.size();i++) {
-                for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
-                    if(!all_numbers2.contains(this.persons.get(i).getPhoneNumbers().get(k))) {
-                        all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
-                    }
-                }
-            }
 
-
-            InsertionSort2(all_numbers2, 0, all_numbers2.size() - 1);
-            String[] all_numbers = new String[all_numbers2.size()];
-            all_numbers = all_numbers2.toArray(all_numbers);
-            return all_numbers;
-
-
-
-
-
-
-
-
-
-
-
-            /*
             ArrayList<Integer> all_numbers2 = new ArrayList<Integer>();
             for(int i = 0; i < this.persons.size();i++) {
                 for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
@@ -223,7 +147,7 @@ public class ContactList {
 
             return all_numbers;
 
-             */
+
         }
 
     public void InsertionSort2(ArrayList<String> list, int start, int end) {
