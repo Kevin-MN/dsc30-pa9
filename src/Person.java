@@ -33,13 +33,15 @@ public class Person implements Comparable<Person> {
         if(this.phone_numbers.size() <= 1){
             throw new IllegalArgumentException();
         }
-        else if(this.phone_numbers.contains(pn)){
-            this.phone_numbers.remove(pn);
-            return true;
-        }
         else{
-            return false;
+            for(int i = 0; i < this.phone_numbers.size();i++){
+                if(this.phone_numbers.get(i).compareTo(pn) == 0){
+                    this.phone_numbers.remove(i);
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     public int compareTo(Person t){
