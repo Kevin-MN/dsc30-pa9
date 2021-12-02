@@ -86,12 +86,13 @@ public class ContactList {
         }
 
         public String[] fetchAllNames() {
-
             String[] all_names = new String[this.persons.size()];
-
             QuickSort2(this.persons, 0, this.persons.size() - 1);
 
-            all_names = this.persons.toArray(all_names);
+            for(int i = 0; i < this.persons.size();i++){
+                all_names[i] = this.persons.get(i).getName();
+            }
+
             return all_names;
         }
 
