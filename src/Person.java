@@ -29,7 +29,7 @@ public class Person implements Comparable<Person> {
     }
 
     public ArrayList<String> getPhoneNumbers() {
-        QuickSort(this.phone_numbers, 0 , this.phone_numbers.size());
+        QuickSort(this.phone_numbers, 0 , this.phone_numbers.size() - 1);
         return this.phone_numbers;
     }
 
