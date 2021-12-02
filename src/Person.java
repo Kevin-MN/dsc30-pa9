@@ -9,6 +9,7 @@ public class Person {
 	public Person(String name, ArrayList<String> pnArray) {
         this.name = name;
         this.phone_numbers = pnArray;
+        InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
 	}
 	
     public String getName() {
@@ -21,6 +22,7 @@ public class Person {
         }
         else{
             this.phone_numbers.add(pn);
+            InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
             return true;
         }
     }
@@ -46,5 +48,22 @@ public class Person {
 
     public int compareTo(Person t){
         return this.name.compareTo(t.getName());
+    }
+
+
+    public static void InsertionSort(ArrayList<String> list, int start, int end) {
+        int n = end;
+        for (int i = 1; i <= n; ++i) { // outer loop traverses n times
+            String key =  list.get(i); // get elem at i
+            int j = i - 1;
+
+            //keep on shifting down sorted section till key is not less that previous
+            while (j >= 0 && list.get(j).compareTo(key)  > 0) {
+                list.set(j + 1, list.get(j));
+                j = j - 1;
+            }
+
+            list.set(j+1, key);//we found proper index for key, so set
+        }
     }
 }
