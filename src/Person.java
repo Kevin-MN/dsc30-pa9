@@ -8,7 +8,9 @@ public class Person implements Comparable<Person> {
 	
 	public Person(String name, ArrayList<String> pnArray) {
         this.name = name;
-        this.phone_numbers = pnArray;
+        for(int i = 0; i < pnArray.size();i++){
+            this.phone_numbers.add(pnArray.get(i));
+        }
 	}
 	
     public String getName() {
