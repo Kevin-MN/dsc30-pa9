@@ -111,7 +111,9 @@ public class ContactList {
 
             InsertionSort2(all_numbers2, 0 , all_numbers2.size() - 1);
             String[] all_numbers = new String[all_numbers2.size()];
-            all_numbers = all_numbers2.toArray(all_numbers);
+            for(int i = 0 ; i< all_numbers.length;i++){
+                all_numbers[i] = all_numbers2.get(i);
+            }
 
             return all_numbers;
         }
