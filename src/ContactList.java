@@ -46,16 +46,17 @@ public class ContactList {
 
 
         public Person[] getContactByRange(String start, String end) {
-            if(start.compareTo(end) >= 0){
-                throw new IllegalArgumentException();
-            }
+
 
             int start_index = this.persons.indexOf(start);
             int end_index = this.persons.indexOf(end);
+            if(end_index - start_index <= 0 || start_index == -1 || end_index == -1){
+                throw new IllegalArgumentException();
+            }
             Person[] persons2 = new Person[end_index - start_index];
 
             for(int i = start_index; i < end_index;i++){
-                persons2[i] = this.persons.get(start_index);
+                persons2[i] = this.persons.get(start_index + i);
             }
 
             return persons2;
