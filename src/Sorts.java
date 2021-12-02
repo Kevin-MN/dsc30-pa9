@@ -21,10 +21,10 @@ public class Sorts<T extends Comparable<? super T>> {
      * @param start The initial index on subsection of Arraylist we want to sort
      * @param end The final index of the subsection of Arraylist we want to sort
      */
-    public static void InsertionSort(ArrayList<String> list, int start, int end) {
+    public static void InsertionSort(ArrayList<Person> list, int start, int end) {
         int n = end;
         for (int i = 1; i <= n; ++i) { // outer loop traverses n times
-            String key =  list.get(i); // get elem at i
+            Person key =  list.get(i); // get elem at i
             int j = i - 1;
 
             //keep on shifting down sorted section till key is not less that previous
