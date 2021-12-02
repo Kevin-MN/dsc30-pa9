@@ -87,7 +87,7 @@ public class ContactList {
 
         public String[] fetchAllNames() {
             String[] all_names = new String[this.persons.size()];
-            QuickSort2(this.persons, 0, this.persons.size() - 1);
+            InsertionSort(this.persons, 0, this.persons.size() - 1);
 
             for(int i = 0; i < this.persons.size();i++){
                 all_names[i] = this.persons.get(i).getName();
