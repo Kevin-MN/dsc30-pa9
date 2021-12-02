@@ -1,6 +1,6 @@
 import java.util.*;   
 
-public class Person implements Comparable<Person> {
+public class Person {
 	
     // Add instance variables here
     private String name;
@@ -44,7 +44,4 @@ public class Person implements Comparable<Person> {
         return false;
     }
 
-    public int compareTo(Person t){
-        return this.name.compareTo(t.getName());
-    }
 }

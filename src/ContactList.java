@@ -26,52 +26,20 @@ public class ContactList {
         }
 
         public boolean lookupContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    return true;
-                }
-            }
-
-            return false;
+           return true;
         }
 
         public Person getContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    return this.persons.get(i);
-                }
-            }
-            return null;
+           return null;
         }
 
 
         public Person[] getContactByRange(String start, String end) {
-            if(end.compareTo(start) <= 0 ){
-                throw new IllegalArgumentException();
-            }
-
-            InsertionSort(this.persons, 0, this.persons.size() - 1);
-            int start_index = this.persons.indexOf(start);
-            int end_index = this.persons.indexOf(end);
-
-            Person[] persons2 = new Person[end_index - start_index];
-
-            for(int i = start_index; i < end_index;i++){
-                persons2[i] = this.persons.get(start_index + i);
-            }
-
-            return persons2;
+           return null;
         }
 
         public boolean deleteContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    this.persons.remove(i);
-                    this.size--;
-                    return true;
-                }
-            }
-            return false;
+            return true;
         }
 
         public int size() {
@@ -79,27 +47,11 @@ public class ContactList {
         }
 
         public String[] fetchAllNames() {
-            String[] all_names = new String[this.persons.size()];
-
-            for(int i = 0; i < all_names.length;i++) {
-                all_names[i] = this.persons.get(i).getName();
-
-            }
-            return all_names;
+           return null;
         }
 
         public String[] fetchAllPhoneNumbers() {
-            ArrayList<String> all_numbers2 = new ArrayList<String>();
-            for(int i = 0; i < this.persons.size();i++) {
-                for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
-                    all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
-                }
-            }
-
-
-            String[] all_numbers = new String[all_numbers2.size()];
-            all_numbers = all_numbers2.toArray(all_numbers);
-            return all_numbers;
+            return null;
         }
 
 
