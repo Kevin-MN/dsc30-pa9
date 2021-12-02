@@ -6,24 +6,13 @@ public class ContactList {
         // Add instance variables here
         private int size;
         private ArrayList<Person> persons;
-
-
         private BSTree<Person> person_tree;
-        private BSTree<String> name_tree;
-
-
-        private ArrayList<String> names;
-        private ArrayList<String> numbers;
-
 
 
         public ContactList(){
           this.size = 0;
-          this.persons = new ArrayList<Person>();
           this.person_tree = new BSTree<Person>();
-          this.names = new ArrayList<String>();
-          this.numbers = new ArrayList<String>();
-          this.name_tree = new BSTree<String>();
+          this.persons = new ArrayList<Person>();
         }
 
 
@@ -34,24 +23,13 @@ public class ContactList {
                 this.person_tree.insert(person);
                 this.persons.add(person);
 
-
-                this.names.add(person.getName());
-                this.name_tree.insert(person.getName());
-                InsertionSort2(this.names, 0 , this.names.size() - 1);
-
-
-                for(int i = 0; i < person.getPhoneNumbers().size();i++){
-                    this.numbers.add(person.getPhoneNumbers().get(i));
-                }
-                InsertionSort2(this.numbers, 0 , this.numbers.size() - 1);
-
                 this.size++;
                 return true;
             }
         }
 
         public boolean lookupContact(String name) {
-            if(name_tree.findKey(name)){
+            if(person_tree.findKey(new Person(name, null))){
                 return true;
             }else{
                 return false;
@@ -88,17 +66,10 @@ public class ContactList {
         }
 
         public boolean deleteContact(String name) {
-            if(this.name_tree.findKey(name)){
-
-                Person temp = new Person(name, null);
-
-
-                this.name_tree.deleteKey(name);
-                this.names.remove(name);
-
-
+            Person temp = new Person(name, new ArrayList<String>());
+            if(this.person_tree.findKey(temp)){
                 this.person_tree.deleteKey(temp);
-
+                this.persons.remove(temp);
 
                 this.size--;
                 return true;
@@ -113,18 +84,18 @@ public class ContactList {
         }
 
         public String[] fetchAllNames() {
-            /*
+
 
             ArrayList<String> all_names2 = new ArrayList<String>();
 
-            for(int i = 0; i < all_names.length;i++) {
+            for(int i = 0; i < this.persons.size();i++) {
                 all_names2.add(this.persons.get(i).getName());
             }
 
-            InsertionSort2(all_names2, 0, all_names2.size() - 1);
-             */
-            String[] all_names = new String[this.names.size()];
-            all_names = this.names.toArray(all_names);
+            QuickSort(all_names2, 0, all_names2.size() - 1);
+
+            String[] all_names = new String[this.persons.size()];
+            all_names = all_names2.toArray(all_names);
             return all_names;
         }
 
@@ -138,7 +109,7 @@ public class ContactList {
                 }
             }
 
-            InsertionSort2(all_numbers2, 0 , all_numbers2.size() - 1);
+            QuickSort(all_numbers2, 0 , all_numbers2.size() - 1);
             String[] all_numbers = new String[all_numbers2.size()];
             all_numbers = all_numbers2.toArray(all_numbers);
 
@@ -177,6 +148,62 @@ public class ContactList {
             }
         }
 
+
+
+    public void QuickSort(ArrayList<String> list, int start, int end) {
+        if (start < end) { // while boundary has not been crossed
+            int partitionIndex = partition(list, start, end); // partition array/subarrays
+
+            //recursively sort left and right halves
+            QuickSort(list, start, partitionIndex-1);
+            QuickSort(list, partitionIndex, end);
+        }
+    }
+
+    /**
+     * private helper method to swap elements of arraylist
+     *
+     * @param arr The arraylist we want swap on
+     * @param i element of first item to swap
+     * @param j element of second item to swap
+     */
+    private void swap(ArrayList<String> arr, int i, int j){
+        String temp_obj = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp_obj);
+    }
+
+
+    /**
+     * partition helper function for QuickSort
+     *
+     * @param arr The arraylist we want to sort
+     * @param l left-most index we want to merge
+     * @param h right-most index we want to merge
+     */
+    int partition(ArrayList<String> arr, int l, int h) {
+        int middle = l + (h - l) / 2;
+        String pivot = arr.get(middle); // choose middle index a pivot
+
+        int i = l, j = h;
+        while (i <= j) {
+            // find element that is greater than pivot
+            while (arr.get(i).compareTo(pivot) < 0) {
+                i++;
+            }
+            //find element that is less than pivot
+            while (arr.get(j).compareTo(pivot) > 0) {
+                j--;
+            }
+
+            if (i <= j) {
+                swap(arr, i, j); // swap the elements
+                i++;
+                j--;
+            }
+        }
+        return i; //return index of pivot for recursive calls
+    }
 
 
 
