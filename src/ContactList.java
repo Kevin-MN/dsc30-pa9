@@ -94,7 +94,8 @@ public class ContactList {
             all_names = this.persons.toArray(all_names);
             return all_names;
         }
-asassasd
+
+
         public String[] fetchAllPhoneNumbers() {
             ArrayList<String> all_numbers2 = new ArrayList<String>();
             for(int i = 0; i < this.persons.size();i++) {
