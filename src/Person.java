@@ -5,11 +5,13 @@ public class Person {
     // Add instance variables here
     private String name;
     private ArrayList<String> phone_numbers;
+    private int size;
 	
 	public Person(String name, ArrayList<String> pnArray) {
         this.name = name;
         this.phone_numbers = pnArray;
         InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
+        this.size = pnArray.size();
 	}
 	
     public String getName() {
@@ -23,6 +25,7 @@ public class Person {
         else{
             this.phone_numbers.add(pn);
             InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
+            this.size++;
             return true;
         }
     }
@@ -32,13 +35,14 @@ public class Person {
     }
 
     public boolean deletePhoneNumber(String pn) {
-        if(this.phone_numbers.size() == 1){
+        if(this.size == 1){
             throw new IllegalArgumentException();
         }
 
         for(int i = 0; i < this.phone_numbers.size();i++){
             if(this.phone_numbers.get(i).compareTo(pn) == 0){
                 this.phone_numbers.remove(i);
+                this.size--;
                 return true;
             }
         }
