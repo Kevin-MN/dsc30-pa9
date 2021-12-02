@@ -50,7 +50,7 @@ public class ContactList {
             InsertionSort(this.persons, 0, this.persons.size() - 1);
             int start_index = this.persons.indexOf(start);
             int end_index = this.persons.indexOf(end);
-            if(start.compareTo(end) <= 0 || end_index - start_index <= 0 || start_index == -1 || end_index == -1){
+            if(start.compareTo(end) >= 0 || end_index - start_index <= 0 || start_index == -1 || end_index == -1){
                 throw new IllegalArgumentException();
             }
             Person[] persons2 = new Person[end_index - start_index];
