@@ -7,12 +7,14 @@ public class ContactList {
         private int size;
         private ArrayList<Person> persons;
         private BSTree<Person> person_tree;
+        private ArrayList<String> names;
 
 
         public ContactList(){
           this.size = 0;
           this.person_tree = new BSTree<Person>();
           this.persons = new ArrayList<Person>();
+          this.names = new ArrayList<String>();
         }
 
 
@@ -22,6 +24,7 @@ public class ContactList {
             }else{
                 this.person_tree.insert(person);
                 this.persons.add(person);
+                this.names.add(person.getName());
 
                 this.size++;
                 return true;
@@ -72,6 +75,7 @@ public class ContactList {
             if(this.person_tree.findKey(temp)){
                 this.person_tree.deleteKey(temp);
                 this.persons.remove(temp);
+                this.names.remove(name);
 
                 this.size--;
                 return true;
@@ -87,15 +91,9 @@ public class ContactList {
 
         public String[] fetchAllNames() {
 
-            ArrayList<String> name = new ArrayList<String>();
-
-
-            for(int i = 0; i < this.persons.size();i++) {
-                name.add(this.persons.get(i).getName());
-            }
-            QuickSort(name, 0, this.persons.size() - 1);
-            String[] all_names = new String[this.persons.size()];
-            all_names = name.toArray(all_names);
+            InsertionSort2(this.names, 0, this.names.size() - 1);
+            String[] all_names = new String[this.names.size()];
+            all_names = this.names.toArray(all_names);
 
             return all_names;
         }
