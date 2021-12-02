@@ -86,12 +86,16 @@ public class ContactList {
         }
 
         public String[] fetchAllNames() {
-            String[] all_names = new String[this.persons.size()];
-            InsertionSort(this.persons, 0, this.persons.size() - 1);
 
-            for(int i = 0; i < this.persons.size();i++){
-                all_names[i] = this.persons.get(i).getName();
+            ArrayList<String> name = new ArrayList<String>();
+
+
+            for(int i = 0; i < this.persons.size();i++) {
+                name.add(this.persons.get(i).getName());
             }
+            QuickSort(name, 0, this.persons.size() - 1);
+            String[] all_names = new String[this.persons.size()];
+            all_names = name.toArray(all_names);
 
             return all_names;
         }
