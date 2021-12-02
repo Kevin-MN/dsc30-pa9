@@ -100,19 +100,19 @@ public class ContactList {
 
 
         public String[] fetchAllPhoneNumbers() {
-            ArrayList<String> all_numbers2 = new ArrayList<String>();
+            ArrayList<Integer> all_numbers2 = new ArrayList<Integer>();
             for(int i = 0; i < this.persons.size();i++) {
                 for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
-                    if(!all_numbers2.contains(this.persons.get(i).getPhoneNumbers().get(k))) {
-                        all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
+                    if(!all_numbers2.contains(Integer.parseInt(this.persons.get(i).getPhoneNumbers().get(k)))) {
+                        all_numbers2.add(Integer.parseInt(this.persons.get(i).getPhoneNumbers().get(k)));
                     }
                 }
             }
 
-            InsertionSort2(all_numbers2, 0 , all_numbers2.size() - 1);
+            InsertionSort3(all_numbers2, 0 , all_numbers2.size() - 1);
             String[] all_numbers = new String[all_numbers2.size()];
             for(int i = 0 ; i< all_numbers.length;i++){
-                all_numbers[i] = all_numbers2.get(i);
+                all_numbers[i] = Integer.toString(all_numbers2.get(i));
             }
 
             return all_numbers;
@@ -122,6 +122,21 @@ public class ContactList {
         int n = end;
         for (int i = 1; i <= n; ++i) { // outer loop traverses n times
             String key =  list.get(i); // get elem at i
+            int j = i - 1;
+
+            //keep on shifting down sorted section till key is not less that previous
+            while (j >= 0 && list.get(j).compareTo(key)  > 0) {
+                list.set(j + 1, list.get(j));
+                j = j - 1;
+            }
+
+            list.set(j+1, key);//we found proper index for key, so set
+        }
+    }
+    public void InsertionSort3(ArrayList<Integer> list, int start, int end) {
+        int n = end;
+        for (int i = 1; i <= n; ++i) { // outer loop traverses n times
+            Integer key =  list.get(i); // get elem at i
             int j = i - 1;
 
             //keep on shifting down sorted section till key is not less that previous
