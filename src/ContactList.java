@@ -6,13 +6,24 @@ public class ContactList {
         // Add instance variables here
         private int size;
         private ArrayList<Person> persons;
+
+
         private BSTree<Person> person_tree;
+        private BSTree<String> name_tree;
+
+
+        private ArrayList<String> names;
+        private ArrayList<String> numbers;
 
 
 
         public ContactList(){
           this.size = 0;
           this.persons = new ArrayList<Person>();
+          this.person_tree = new BSTree<Person>();
+          this.names = new ArrayList<String>();
+          this.numbers = new ArrayList<String>();
+          this.name_tree = new BSTree<String>();
         }
 
 
@@ -20,20 +31,31 @@ public class ContactList {
             if(lookupContact(person.getName())){
                 return false;
             }else{
+                this.person_tree.insert(person);
                 this.persons.add(person);
+
+
+                this.names.add(person.getName());
+                this.name_tree.insert(person.getName());
+                InsertionSort2(this.names, 0 , this.names.size() - 1);
+
+
+                for(int i = 0; i < person.getPhoneNumbers().size();i++){
+                    this.numbers.add(person.getPhoneNumbers().get(i));
+                }
+                InsertionSort2(this.numbers, 0 , this.numbers.size() - 1);
+
                 this.size++;
                 return true;
             }
         }
 
         public boolean lookupContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    return true;
-                }
+            if(name_tree.findKey(name)){
+                return true;
+            }else{
+                return false;
             }
-
-            return false;
         }
 
         public Person getContact(String name) {
@@ -66,14 +88,24 @@ public class ContactList {
         }
 
         public boolean deleteContact(String name) {
-            for(int i = 0; i < this.persons.size();i++){
-                if(this.persons.get(i).getName().compareTo(name) == 0){
-                    this.persons.remove(i);
-                    this.size--;
-                    return true;
-                }
+            if(this.name_tree.findKey(name)){
+
+                Person temp = new Person(name, null);
+
+
+                this.name_tree.deleteKey(name);
+                this.names.remove(name);
+
+
+                this.person_tree.deleteKey(temp);
+
+
+                this.size--;
+                return true;
             }
-            return false;
+            else{
+                return false;
+            }
         }
 
         public int size() {
@@ -81,7 +113,8 @@ public class ContactList {
         }
 
         public String[] fetchAllNames() {
-            String[] all_names = new String[this.persons.size()];
+            /*
+
             ArrayList<String> all_names2 = new ArrayList<String>();
 
             for(int i = 0; i < all_names.length;i++) {
@@ -89,7 +122,9 @@ public class ContactList {
             }
 
             InsertionSort2(all_names2, 0, all_names2.size() - 1);
-            all_names = all_names2.toArray(all_names);
+             */
+            String[] all_names = new String[this.names.size()];
+            all_names = this.names.toArray(all_names);
             return all_names;
         }
 
@@ -368,6 +403,59 @@ public class ContactList {
                 }
             }
         }
+
+
+        void deleteKey(T key) {
+            root = delete_helper(root, key);
+        }
+
+
+        BSTNode delete_helper(BSTNode root, T key)
+        {
+
+            if (root == null)
+                return root;
+
+            /* Otherwise, recur down the tree */
+            if (key.compareTo(root.key) < 0)
+                root.left = delete_helper(root.left, key);
+            else if (key.compareTo(root.key) > 0)
+                root.right = delete_helper(root.right, key);
+
+                // if key is same as root's
+                // key, then This is the
+                // node to be deleted
+            else {
+                // node with only one child or no child
+                if (root.left == null)
+                    return root.right;
+                else if (root.right == null)
+                    return root.left;
+
+                // node with two children: Get the inorder
+                // successor (smallest in the right subtree)
+                root.key = minValue(root.right);
+
+                // Delete the inorder successor
+                root.right = delete_helper(root.right, root.key);
+            }
+
+            return root;
+        }
+
+        T minValue(BSTNode root)
+        {
+            T minv = root.key;
+            while (root.left != null)
+            {
+                minv = root.left.key;
+                root = root.left;
+            }
+            return minv;
+        }
+
+
+
 
 
         /**
