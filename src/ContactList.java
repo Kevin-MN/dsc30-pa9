@@ -100,6 +100,31 @@ public class ContactList {
 
 
         public String[] fetchAllPhoneNumbers() {
+
+
+            ArrayList<String> all_numbers2 = new ArrayList<String>();
+            for(int i = 0; i < this.persons.size();i++) {
+                for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
+                    all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
+                }
+            }
+
+
+            String[] all_numbers = new String[all_numbers2.size()];
+            all_numbers = all_numbers2.toArray(all_numbers);
+            return all_numbers;
+
+
+
+
+
+
+
+
+
+
+
+            /*
             ArrayList<Integer> all_numbers2 = new ArrayList<Integer>();
             for(int i = 0; i < this.persons.size();i++) {
                 for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
@@ -116,6 +141,8 @@ public class ContactList {
             }
 
             return all_numbers;
+
+             */
         }
 
     public void InsertionSort2(ArrayList<String> list, int start, int end) {
