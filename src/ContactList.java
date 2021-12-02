@@ -87,20 +87,14 @@ public class ContactList {
 
         public String[] fetchAllNames() {
 
-
-            ArrayList<String> all_names2 = new ArrayList<String>();
-
-            for(int i = 0; i < this.persons.size();i++) {
-                all_names2.add(this.persons.get(i).getName());
-            }
-
-            QuickSort(all_names2, 0, all_names2.size() - 1);
-
             String[] all_names = new String[this.persons.size()];
-            all_names = all_names2.toArray(all_names);
+
+            QuickSort2(this.persons, 0, this.persons.size() - 1);
+
+            all_names = this.persons.toArray(all_names);
             return all_names;
         }
-
+asassasd
         public String[] fetchAllPhoneNumbers() {
             ArrayList<String> all_numbers2 = new ArrayList<String>();
             for(int i = 0; i < this.persons.size();i++) {
@@ -162,6 +156,17 @@ public class ContactList {
         }
     }
 
+    public void QuickSort2(ArrayList<Person> list, int start, int end) {
+        if (start < end) { // while boundary has not been crossed
+            int partitionIndex = partition(list, start, end,0); // partition array/subarrays
+
+            //recursively sort left and right halves
+            QuickSort2(list, start, partitionIndex-1);
+            QuickSort2(list, partitionIndex, end);
+        }
+    }
+
+
     /**
      * private helper method to swap elements of arraylist
      *
@@ -175,6 +180,12 @@ public class ContactList {
         arr.set(j, temp_obj);
     }
 
+    private void swap(ArrayList<Person> arr, int i, int j,int p){
+        Person temp_obj = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp_obj);
+    }
+
 
     /**
      * partition helper function for QuickSort
@@ -183,7 +194,7 @@ public class ContactList {
      * @param l left-most index we want to merge
      * @param h right-most index we want to merge
      */
-    int partition(ArrayList<String> arr, int l, int h) {
+    public int partition(ArrayList<String> arr, int l, int h) {
         int middle = l + (h - l) / 2;
         String pivot = arr.get(middle); // choose middle index a pivot
 
@@ -200,6 +211,30 @@ public class ContactList {
 
             if (i <= j) {
                 swap(arr, i, j); // swap the elements
+                i++;
+                j--;
+            }
+        }
+        return i; //return index of pivot for recursive calls
+    }
+
+    private int partition(ArrayList<Person> arr, int l, int h, int p) {
+        int middle = l + (h - l) / 2;
+        Person pivot = arr.get(middle); // choose middle index a pivot
+
+        int i = l, j = h;
+        while (i <= j) {
+            // find element that is greater than pivot
+            while (arr.get(i).compareTo(pivot) < 0) {
+                i++;
+            }
+            //find element that is less than pivot
+            while (arr.get(j).compareTo(pivot) > 0) {
+                j--;
+            }
+
+            if (i <= j) {
+                swap(arr, i, j,0); // swap the elements
                 i++;
                 j--;
             }
