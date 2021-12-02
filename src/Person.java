@@ -35,7 +35,6 @@ public class Person {
     }
 
     public boolean deletePhoneNumber(String pn) {
-
         for(int i = 0; i < this.phone_numbers.size();i++){
             if(this.phone_numbers.get(i).compareTo(pn) == 0){
                 if(this.size == 1){
