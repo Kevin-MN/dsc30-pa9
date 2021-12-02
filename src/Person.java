@@ -44,4 +44,7 @@ public class Person {
         return false;
     }
 
+    public int compareTo(Person t){
+        return this.name.compareTo(t.getName());
+    }
 }
