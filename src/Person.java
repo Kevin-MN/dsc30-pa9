@@ -1,6 +1,6 @@
 import java.util.*;   
 
-public class Person {
+public class Person implements Comparable<Person> {
 	
     // Add instance variables here
     private String name;

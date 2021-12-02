@@ -6,6 +6,7 @@ public class ContactList {
         // Add instance variables here
         private int size;
         private ArrayList<Person> persons;
+        private BSTree<Person> person_tree;
 
 
 
@@ -51,17 +52,17 @@ public class ContactList {
             }
 
 
-            InsertionSort(this.persons, 0, this.persons.size() - 1);
-            int start_index = this.persons.indexOf(start);
-            int end_index = this.persons.indexOf(end);
+            ArrayList<Person> temp = new ArrayList<Person>();
 
-            Person[] persons2 = new Person[end_index - start_index];
-
-            for(int i = start_index; i < end_index;i++){
-                persons2[i] = this.persons.get(start_index + i);
+            for(int i = 0; i < this.persons.size();i++){
+                if(this.persons.get(i).getName().compareTo(start) >= 0 &&  this.persons.get(i).getName().compareTo(end) < 0 )
+                temp.add(this.persons.get(i));
             }
 
-            return persons2;
+            InsertionSort(temp, 0, temp.size() - 1);
+            Person[] temp2 = new Person[temp.size()];
+            temp2 = temp.toArray(temp2);
+            return temp2;
         }
 
         public boolean deleteContact(String name) {
