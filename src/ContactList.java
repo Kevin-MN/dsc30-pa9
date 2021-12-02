@@ -105,8 +105,9 @@ public class ContactList {
             ArrayList<String> all_numbers2 = new ArrayList<String>();
             for(int i = 0; i < this.persons.size();i++) {
                 for(int k = 0;  k < this.persons.get(i).getPhoneNumbers().size(); k++){
-                    if(!all_numbers2.contains(this.persons.get(i).getPhoneNumbers().get(k)))
-                    all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
+                    if(!all_numbers2.contains(this.persons.get(i).getPhoneNumbers().get(k))) {
+                        all_numbers2.add(this.persons.get(i).getPhoneNumbers().get(k));
+                    }
                 }
             }
 
