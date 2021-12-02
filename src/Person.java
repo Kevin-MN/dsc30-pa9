@@ -10,7 +10,6 @@ public class Person implements Comparable<Person> {
 	public Person(String name, ArrayList<String> pnArray) {
         this.name = name;
         this.phone_numbers = pnArray;
-        InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
         this.size = pnArray.size();
 	}
 	
@@ -24,13 +23,13 @@ public class Person implements Comparable<Person> {
         }
         else{
             this.phone_numbers.add(pn);
-            InsertionSort(this.phone_numbers, 0 ,this.phone_numbers.size() - 1);
             this.size++;
             return true;
         }
     }
 
     public ArrayList<String> getPhoneNumbers() {
+        QuickSort(this.phone_numbers, 0 , this.phone_numbers.size());
         return this.phone_numbers;
     }
 
@@ -68,5 +67,61 @@ public class Person implements Comparable<Person> {
 
             list.set(j+1, key);//we found proper index for key, so set
         }
+    }
+
+
+    public void QuickSort(ArrayList<String> list, int start, int end) {
+        if (start < end) { // while boundary has not been crossed
+            int partitionIndex = partition(list, start, end); // partition array/subarrays
+
+            //recursively sort left and right halves
+            QuickSort(list, start, partitionIndex-1);
+            QuickSort(list, partitionIndex, end);
+        }
+    }
+
+    /**
+     * private helper method to swap elements of arraylist
+     *
+     * @param arr The arraylist we want swap on
+     * @param i element of first item to swap
+     * @param j element of second item to swap
+     */
+    private void swap(ArrayList<String> arr, int i, int j){
+        String temp_obj = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp_obj);
+    }
+
+
+    /**
+     * partition helper function for QuickSort
+     *
+     * @param arr The arraylist we want to sort
+     * @param l left-most index we want to merge
+     * @param h right-most index we want to merge
+     */
+    int partition(ArrayList<String> arr, int l, int h) {
+        int middle = l + (h - l) / 2;
+        String pivot = arr.get(middle); // choose middle index a pivot
+
+        int i = l, j = h;
+        while (i <= j) {
+            // find element that is greater than pivot
+            while (arr.get(i).compareTo(pivot) < 0) {
+                i++;
+            }
+            //find element that is less than pivot
+            while (arr.get(j).compareTo(pivot) > 0) {
+                j--;
+            }
+
+            if (i <= j) {
+                swap(arr, i, j); // swap the elements
+                i++;
+                j--;
+            }
+        }
+        return i; //return index of pivot for recursive calls
     }
 }

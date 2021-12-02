@@ -29,7 +29,9 @@ public class ContactList {
         }
 
         public boolean lookupContact(String name) {
-            if(person_tree.findKey(new Person(name, null))){
+            ArrayList<String> temps = new ArrayList<String>();
+            Person temp = new Person(name, temps);
+            if(person_tree.findKey(temp)){
                 return true;
             }else{
                 return false;
